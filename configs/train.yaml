@@ -1,0 +1,37 @@
+# Training configuration for T5 Chinese-English translation
+
+# -- Paths --
+DATA_DIR: '/data/250010009/course/nlpAllms/data/translation_dataset_zh_en'
+PRETRAINED_MODEL_PATH: '/data/250010009/course/nlpAllms/project/T5_NMT/checkpoints'  # Pretrained model directory (read-only)
+SAVE_DIR: 'save_dir'  # Directory to save training outputs (checkpoints, logs, etc.)
+# Note: checkpoints/ is for pretrained models only, SAVE_DIR is for training outputs
+
+# -- Model Parameters --
+MAX_INPUT_LENGTH: 512
+MAX_TARGET_LENGTH: 128
+
+# -- Training Parameters --
+NUM_EPOCHS: 50
+BATCH_SIZE: 64
+LEARNING_RATE: 1e-5
+WEIGHT_DECAY: 0.01
+CLIP_GRAD: 5.0
+LOG_INTERVAL: 5
+EARLY_STOPPING_PATIENCE: 30
+EARLY_STOPPING_MIN_DELTA: 0.0
+
+# -- Distributed Training --
+DISTRIBUTED: True
+LOCAL_RANK: 0
+local_rank: 0
+distributed: True
+
+# -- Other --
+NUM_WORKERS: 4
+
+# -- Resume Training --
+# Options:
+#   - null: Start from pretrained model (recommended for first training)
+#   - 'checkpoints/pytorch_model.bin': Load pretrained model weights and start fine-tuning
+#   - 'outputs/checkpoint_last.pth': Resume training from a previous checkpoint (includes optimizer, scheduler, etc.)
+resume_from_checkpoint: checkpoints/pytorch_model.bin  # Set to pretrained model path to start fine-tuning, or trained checkpoint to resume

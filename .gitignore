@@ -1,0 +1,5 @@
+checkpoints/
+outputs/
+save_dir/
+.vscode/
+__pycache__/

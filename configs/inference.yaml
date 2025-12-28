@@ -1,0 +1,27 @@
+# Inference configuration for T5 Chinese-English translation
+
+# -- Model Paths --
+# NOTE: Use trained checkpoint after training, not the pretrained model!
+# After training, the checkpoint will be saved in SAVE_DIR/checkpoint_best.pth
+model_path: /data/250010009/course/nlpAllms/project/T5_NMT/save_dir/checkpoint_best.pth # Change this to your trained checkpoint path
+# If checkpoint doesn't exist, it will fall back to pretrained model (but won't work well for Chinese-English)
+PRETRAINED_MODEL_PATH: '/data/250010009/course/nlpAllms/project/T5_NMT/checkpoints'  # Pretrained model directory (read-only)
+SAVE_DIR: 'save_dir'  # Directory where training outputs are saved (should match train.yaml)
+device: auto  # choices=['cpu', 'cuda', 'auto']
+verbose: False  # Set to True to see debug information
+
+# -- Input/Output --
+input_text: "深圳是一座美丽的城市"  # A single sentence to translate
+input_file: null  # Path to a text file with sentences to translate (one per line)
+output_file: translations.txt
+reference_file: null  # Path to the reference translations for evaluation
+
+# -- Generation Parameters --
+max_length: 128
+num_beams: 4
+
+# -- Mode --
+interactive: False  # Set to True for interactive translation mode
+
+# -- Paths --
+DATA_DIR: '/data/250010009/course/nlpAllms/data/translation_dataset_zh_en'
